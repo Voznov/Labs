@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1542202597 source:d:\projects\labs\algo\2\h.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+
