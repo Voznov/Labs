@@ -21,8 +21,8 @@ void kek(int now, string s)
 
 int main()
 {
-	freopen("permutations.in", "r", stdin);
-	freopen("permutations.out", "w", stdout);
+	//freopen("permutations.in", "r", stdin);
+	//freopen("permutations.out", "w", stdout);
 
 	cin >> n;
 	for (int i = 1; i <= n; ++i)
