@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 
-uint n, w;
+unsigned long long n, w;
 
 using namespace std;
 
@@ -40,13 +40,13 @@ void writeAndClear(vector<int> & result)
 int main() {
 #ifndef _DEBUG
     freopen("skyscraper.in", "r", stdin);
-    freopen("skyscraper.out", "w", stdin);
+    freopen("skyscraper.out", "w", stdout);
 #else
     cerr << "DEBUG:" << endl;
 #endif
 
     cin >> n >> w;
-    int N = 1u << n;
+    int N = (1 << n);
     int a[n];
     for (int i = 0; i < n; ++i)
         cin >> a[i];
@@ -54,10 +54,10 @@ int main() {
     Kek b[N];
     b[0] = {0, 0, -1};
 
-    for (uint i = 1; i < N; ++i) {
+    for (unsigned long long i = 1; i < N; ++i) {
         b[i] = {100, 0, -1};
-        for (uint j = 0; j < n; ++j) {
-            uint J = (1u << j);
+        for (unsigned long long j = 0; j < n; ++j) {
+            unsigned long long J = (1 << j);
             if (i == (i | J) && lesss(addd(b[i - J], a[j]), b[i]))
                 b[i] = addd(b[i - J], a[j], j);
         }
@@ -70,9 +70,9 @@ int main() {
 
     while (now)
     {
-        uint prevCow = b[now].prevCow;
+        unsigned long long prevCow = b[now].prevCow;
         result.push_back(prevCow);
-        now -= (1u << prevCow);
+        now -= (1 << prevCow);
         if (b[now].lifts < nowLifts)
         {
             writeAndClear(result);

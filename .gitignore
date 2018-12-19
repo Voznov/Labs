@@ -2,4 +2,7 @@
 *.o
 *.jar
 *.obj
-.idea
+*.in
+*.out
+.idea/
+cmake-build-debug/
