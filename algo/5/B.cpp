@@ -58,7 +58,7 @@ private:
             return this;
         }
 
-        signed int balance_factor() {
+        int balance_factor() {
             return (right ? right->height : 0) - (left ? left->height : 0);
         }
 
@@ -82,8 +82,8 @@ private:
         }
 
         ~node() {
-            delete left;
-            delete right;
+            //delete left;
+            //delete right;
         }
 
         node *insert(int _key) {
@@ -114,7 +114,7 @@ private:
                     if (tmp)
                         tmp->parent = parent;
                     left = nullptr;
-                    delete this;
+                    //delete this;
                     return tmp;
                 }
                 node *min = right->find_min();
@@ -125,9 +125,9 @@ private:
                 }
                 node *tmp = min->parent;
                 (tmp->left == min ? tmp->left : tmp->right) = nullptr;
-                delete min;
+                //delete min;
                 while (tmp != this) {
-                    tmp->balance();
+                    (tmp->parent->left == tmp ? tmp->parent->left : tmp->parent->right) = tmp->balance();
                     tmp = tmp->parent;
                 }
             }
@@ -150,7 +150,7 @@ public:
     balanced_tree() = default;
 
     ~balanced_tree() {
-        delete root;
+        //delete root;
     }
 
     void insert(int key) {
@@ -244,7 +244,7 @@ int main() {
                 cout << '\n';
                 break;
             default:
-                cout << "lol\n";
+		throw 228;
                 break;
         }
     }
