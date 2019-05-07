@@ -7,6 +7,14 @@
 
 using namespace std;
 
+bool rule(unordered_set<int> * a, unordered_set<int> * b) {
+	return (a->find(0) != a->end());
+}
+
+bool emptyV(unordered_set<int> * a) {
+	return (*a).empty();
+}
+
 int main() {
 #ifndef _DEBUG
 	freopen("minimization.in", "r", stdin);
@@ -91,6 +99,12 @@ int main() {
 			}
 	}
 
+	P.erase(remove_if(P.begin(), P.end(), emptyV), P.end());
+	sort(P.begin(), P.end(), rule);
+    for (int i = 0; i < P.size(); ++i)
+        for (int x : *(P[i]))
+        	Class[x] = i;
+
 	int newN = P.size(), newM = 0, newK = 0;
 	bool newfin[newN];
 	for (int i = 0; i < newN; ++i)
@@ -109,7 +123,7 @@ int main() {
 			newfin[num] = true;
 		}
 		for (int i = 0; i < 26; ++i)
-			if (mat[xx][i]) {
+			if (mat[xx][i] != -1) {
 				++newM;
 				newmat[num][i] = Class[mat[xx][i]];
 			}
@@ -122,8 +136,8 @@ int main() {
 	cout << endl;
 	for (int i = 0; i < newN; ++i)
 		for (int j = 0; j < 26; ++j)
-			if (newmat[i][j])
-				cout << (i + 1) << ' ' << (newmat[i][j] + 1) << ' ' << (j + 1) << endl;
+			if (newmat[i][j] != -1)
+				cout << (i + 1) << ' ' << (newmat[i][j] + 1) << ' ' << (char) (j + 'a') << endl;
 
 	return 0;
 }
